@@ -28,7 +28,6 @@ App.controller('MainCtrl', function($scope, $rootScope, $log, $http, $routeParam
 });
 
 App.controller('InsertCtrl', function($scope, $rootScope, $log, $http, $routeParams, $location, $route) {
-
   $scope.submitInsert = function() {
     var guest = {
       first : $scope.first,
@@ -45,7 +44,6 @@ App.controller('InsertCtrl', function($scope, $rootScope, $log, $http, $routePar
 });
 
 App.controller('UpdateCtrl', function($routeParams, $rootScope, $scope, $log, $http, $location) {
-
   for (var i=0; i<$rootScope.guests.length; i++) {
     if ($rootScope.guests[i].id == $routeParams.id) {
       $scope.guest = angular.copy($rootScope.guests[i]);

@@ -1,4 +1,4 @@
-var App = angular.module('AppFactories', []);
+var App = angular.module('AppServices', []);
 
 App.factory('myHttpInterceptor', function($rootScope, $q) {
   return {

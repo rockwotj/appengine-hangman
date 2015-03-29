@@ -1,6 +1,6 @@
 'use strict';
 
-var App = angular.module('App', ['ngRoute', 'AppControllers', 'AppFactories']);
+var App = angular.module('App', ['ngRoute', 'AppControllers', 'AppServices']);
 
 App.config(function($routeProvider) {
   $routeProvider.when('/', {

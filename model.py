@@ -26,17 +26,24 @@ def DeleteGuest(id):
   key = ndb.Key(Guest, id)
   key.delete()
 
+class SecretWord(EndpointsModel):
+    """
+    List of these are all of the registered available games, note word is not sent via Endpoints    
+    """
+    message_field_schema = ("entityKey", "creator", "word_length", "last_touch_date_time")
+    word = ndb.StringProperty() #"basic"
+    creator = ndb.StringProperty() #"Rocky" 
+    word_length = ndb.ComputedProperty(lambda (self): len(self.word))
+    last_touch_date_time = ndb.DateTimeProperty(auto_now=True)
 
 class HangmanGame(EndpointsModel):
-    secret_word = ndb.StringProperty()
-    letters_guessed = ndb.StringProperty()
-    display_word = ndb.ComputedProperty(get_display_word)
-    
-    def get_display_word(self):
-        displayed = ""
-        for letter in secret_word:
-            if letter in letters_guessed:
-                displayed += letter
-            else:
-                displayed += '*'
-        return displayed
+    """
+    Parent key of User,
+    Once a user "selects a SecretWord, their game and progress is represented by this model"    
+    """
+    message_field_schema = ("entityKey", "creator", "display_word", "guesses", "last_touch_date_time")
+    word = ndb.KeyProperty(kind=SecretWord)
+    creator = ndb.ComputedProperty(lambda(self): self.word.get().creator)
+    display_word = ndb.StringProperty() #"ba**c"
+    guesses = ndb.StringProperty() #"abcyz"
+    last_touch_date_time = ndb.DateTimeProperty(auto_now=True)
