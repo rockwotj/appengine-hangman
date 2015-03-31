@@ -17,7 +17,7 @@ This may or may not eventually become a lab for student looking to learn similar
 
 ## Origins
 
-This webapp started out as App Engine AngularJS "Hello World" Python starting template provided by Google Cloud Platform.
+This webapp started out as [App Engine AngularJS "Hello World" Python](https://github.com/GoogleCloudPlatform/appengine-angular-hello-world-python) starting template provided by Google Cloud Platform.
 
 Author: Fred Sauer <fredsa@google.com>
 
