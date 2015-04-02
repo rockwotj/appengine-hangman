@@ -3,9 +3,9 @@ import random
 from protorpc import remote
 from model import HangmanGame, SECRET_WORD_LIST
 
-LOCALHOST_ID = "767636924532-43i4f4p4nsuqhabgfbkufd3jiia172ba.apps.googleusercontent.com"
+WEB_CLIENT_ID = "767636924532-7qgufuhgrrkdarors317f9emgdhgb53p.apps.googleusercontent.com"
 
-WEB_CLIENT_ID = "767636924532-a69g5elglcgv4rk8a9d64ng41jrvcuns.apps.googleusercontent.com"
+LOCALHOST_ID = "767636924532-43i4f4p4nsuqhabgfbkufd3jiia172ba.apps.googleusercontent.com"
 
 @endpoints.api(name="hangman", version="v1", description="Hangman Game API",
                audiences=[WEB_CLIENT_ID, LOCALHOST_ID], allowed_client_ids=[endpoints.API_EXPLORER_CLIENT_ID, WEB_CLIENT_ID, LOCALHOST_ID])

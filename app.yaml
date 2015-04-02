@@ -20,11 +20,13 @@ handlers:
   static_files: app\1/index.html
   upload: app
   login: required
+  secure: always
 
 - url: (.*)
   static_files: app\1
   upload: app
   login: required
+  secure: always
 
 libraries:
 - name: endpoints
