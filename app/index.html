@@ -59,15 +59,27 @@
       </section>
     </div>
     <paper-fab icon="add" title="Add Guess" ng-click="toggleGuessDialog()"></paper-fab>
-    <paper-action-dialog backdrop autoCloseDisabled layered="false" heading="Submit Guess" >
+    <paper-action-dialog id="guess-dialog" backdrop autoCloseDisabled layered="false" heading="Submit Guess" >
       <section>
         <paper-input-decorator label="Make Your Guess"
                        error="You can only guess one character at a time!" floatingLabel isInvalid="false">
-          <input id="i2" is="core-input" maxlength="2" ng-model="guess">
-          <paper-char-counter class="counter" showCounter="false" target="i2"></paper-char-counter>
+          <input id="guess" is="core-input" maxlength="2" ng-model="guess">
+          <paper-char-counter class="counter" showCounter="false" target="guess"></paper-char-counter>
         </paper-input-decorator>
       </section>
       <paper-button affirmative>Cancel</paper-button><paper-button affirmative autofocus ng-click="makeGuess(guess)">Send</paper-button>
+    </paper-action-dialog>
+    <paper-action-dialog id="won-dialog" backdrop autoCloseDisabled layered="false" heading="Congrats!" >
+      <section>
+        <p>Yay! You won the game!</p>
+      </section>
+      <paper-button affirmative autofocus>Ok</paper-button>
+    </paper-action-dialog>
+    <paper-action-dialog id="lost-dialog" backdrop autoCloseDisabled layered="false" heading="Sorry!" >
+      <section>
+        <p>Oops! You lost the game!</p>
+      </section>
+      <paper-button affirmative autofocus ng-click="newGame()">New Game</paper-button>
     </paper-action-dialog>
   </body>
 </html>

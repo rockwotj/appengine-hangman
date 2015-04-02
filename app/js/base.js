@@ -19,9 +19,9 @@
  * @type {string}
  */
 //Below is for the deployed
-CLIENT_ID = '767636924532-7qgufuhgrrkdarors317f9emgdhgb53p.apps.googleusercontent.com';
+//CLIENT_ID = '767636924532-7qgufuhgrrkdarors317f9emgdhgb53p.apps.googleusercontent.com';
 //Below is for localhost testing
-//CLIENT_ID = '767636924532-43i4f4p4nsuqhabgfbkufd3jiia172ba.apps.googleusercontent.com';
+CLIENT_ID = '767636924532-43i4f4p4nsuqhabgfbkufd3jiia172ba.apps.googleusercontent.com';
 /**
  * Scopes used by the application.
  *
@@ -43,7 +43,7 @@ RESPONSE_TYPE = 'token id_token';
  *            apiRoot Root of the API's path.
  */
 init = function() {
-	var apisToLoad;
+  var apisToLoad;
   var apiRoot = '//' + window.location.host + '/_ah/api';
 	var callback = function() {
 		if (--apisToLoad == 0) {

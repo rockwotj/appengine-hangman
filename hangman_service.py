@@ -31,6 +31,12 @@ class HangmanApi(remote.Service):
         user = endpoints.get_current_user()
         old_game = HangmanGame.get_by_id(user.email().lower())
         hangman_game.guesses = hangman_game.guesses.upper()
+        wrong_answers = 0
+        for letter in old_game.guesses:
+            if letter in old_game.word:
+                wrong_answers += 1
+        if wrong_answers >= 6:
+            raise endpoints.BadRequestException('You already lost this game!')
         if hangman_game.guesses[:-1] != old_game.guesses:
             raise endpoints.BadRequestException('You cannot modify old guesses or make more than one guess at a time!')
         hangman_game.word = old_game.word

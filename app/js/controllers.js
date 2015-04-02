@@ -5,10 +5,13 @@ App.controller('MainCtrl', function($scope, $rootScope, cloudEndpoints) {
   $scope.game = {'display_word': [' '], 'guesses': ""};
   $scope.guess = "";
   $scope.wrongAnswers = 0;
+  var setStatus = function(status) {
+	$rootScope.status = status;
+	$rootScope.$apply();
+  }
   // Force sign in on start up
   cloudEndpoints.signin(function() {
-    $rootScope.status = 'User Authenticated!';
-    $rootScope.$apply();
+    setStatus('User Authenticated!');
     $scope.newGame();
   });
   var bindResult = function(game) {
@@ -24,34 +27,49 @@ App.controller('MainCtrl', function($scope, $rootScope, cloudEndpoints) {
     $scope.$apply();
   }
   $scope.newGame = function() {
-    console.log("New Game!");
+    setStatus('Getting new game from server...');
     cloudEndpoints.doCall().then(function(api) {
       api.client.hangman.new().execute(function(resp) {
-        console.log(resp.result);
+    	setStatus('New game created!');
+    	console.log(resp.result);
         bindResult(resp.result);
       });
     }, function(api) {
-      $rootScope.status = 'Endpoints Call Failed!';
-      $rootScope.$apply();
+    	setStatus('API Call Failure!');
     });
   };
   $scope.makeGuess = function(letter) {
-    console.log("Guessing: " + letter);
+	$scope.guess = "";
+	letter = letter.toUpperCase();
+	if (letter.length !== 1) {
+		setStatus('Incorrect Guess!');
+		return;
+	} else if($scope.game.guesses.indexOf(letter) > -1) {
+		setStatus('You already made that guess!');
+		return;
+	}
+	setStatus('Sending Guess of ' + letter + ' to Server...');
     cloudEndpoints.doCall().then(function(api) {
+      setStatus('Made the guess!');
       var game = $scope.game;
       game.display_word = game.display_word.join("");
       game.guesses += letter;
       api.client.hangman.guess(game).execute(function(resp) {
         console.log(resp);
         bindResult(resp.result);
-        $scope.guess = "";
       });
     }, function(api) {
-      $rootScope.status = 'Endpoints Call Failed!';
-      $rootScope.$apply();
+    	setStatus('API Call Failure!');
     });
   };
   $scope.toggleGuessDialog = function() {
-    document.querySelector('paper-action-dialog').toggle();
+	 if($scope.game.display_word.indexOf('_') === -1) {
+		document.querySelector('#won-dialog').toggle();
+	} else if($scope.wrongAnswers < 6) {
+		document.querySelector('#guess-dialog').toggle();
+		document.querySelector('#guess').focus();
+	} else {
+		document.querySelector('#lost-dialog').toggle();
+	}
   };
 });
