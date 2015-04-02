@@ -1,6 +1,11 @@
-var App = angular.module('AppServices', []);
+var app = angular.module('AppServices', []);
 var apiCallInProgress = false;
-App.service('cloudEndpoints', function ($q, $rootScope) {
+
+app.factory('codeTypes', function() {
+  return ['Braille', 'Sign Language', 'Text'];
+});
+
+app.service('cloudEndpoints', function ($q, $rootScope) {
   this.doCall = function() {
 	  if(!apiCallInProgress) {
 	    var p = $q.defer();
@@ -22,8 +27,8 @@ App.service('cloudEndpoints', function ($q, $rootScope) {
 	    return p.promise;
 	  }
   };
-  
-  this.signin=function(callback) {
+
+  this.signin = function(callback) {
     gapi.auth.authorize({
       client_id: CLIENT_ID,
       scope: SCOPES,

@@ -8,5 +8,5 @@ The basis of this web app was developed by Tyler Rockwood as a learning experien
 
 1. AngularJS
 1. Javascript Endpoints
-1. OAuth
+1. OAuth in Javascript
 1. Polymer

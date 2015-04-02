@@ -1,0 +1,26 @@
+<polymer-element name="code-letter" attributes="letter size type">
+<template>
+  <style>
+    span {
+      font-size: {{ size }}px;
+      width: {{ size }}px;
+    }
+    img {
+      width: {{ size }}px;
+    }
+    .shown-false {
+      display: none;
+    }
+  </style>
+    <span class="shown-{{ 'Braille' === type }}"><img src="/imgs/braille/{{ letter }}.png" alt="{{ letter }}"></span>
+    <span class="shown-{{ 'Sign Language' === type }}"><img src="/imgs/sign-language/{{ letter }}.png" alt="{{ letter }}"></span>
+    <span class="shown-{{ 'Text' === type }}">{{ letter }}</span>
+</template>
+<script>
+  Polymer({
+    size: 64,
+    letter: '_',
+    type: 'text'
+  });
+</script>
+</polymer-element>
