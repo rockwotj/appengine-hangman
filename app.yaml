@@ -19,10 +19,12 @@ handlers:
 - url: (.*)/
   static_files: app\1/index.html
   upload: app
+  login: required
 
 - url: (.*)
   static_files: app\1
   upload: app
+  login: required
 
 libraries:
 - name: endpoints

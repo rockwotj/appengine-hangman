@@ -1,12 +1,14 @@
 <!doctype html>
-<html ng-app="App">
+<html>
   <head>
     <link rel="stylesheet" href="/css/app.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular-route.js"></script>
+    <script src="/js/base.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/controllers.js"></script>
     <script src="/js/services.js"></script>
+    <!-- Endpoints Library -->
+    <script src="https://apis.google.com/js/client.js?onload=init"></script>
     <!-- Polymer -->
     <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
     <link rel="import" href="/bower_components/polymer/polymer.html">
@@ -28,7 +30,7 @@
     <link href="/polymer/custom-elements.html" rel="import">
     <!-- Whoo! That was alot of polymer elements just for what I was trying todo... -->
   </head>
-  <body>
+  <body ng-controller="MainCtrl">
 	<core-toolbar style="background: #4285f4;">
 	  <span flex>Top Secret Hangman</span>
 	  <paper-menu-button>
@@ -42,39 +44,30 @@
           </core-menu>
         </paper-dropdown>
       </paper-menu-button>
-	  <paper-item>New Game</paper-item>
+	  <paper-item ng-click="newGame()">New Game</paper-item>
 	</core-toolbar>
-    <pre class="status" ng-bind="status"></pre>
-    <div id="game">
-      <stick-figure size="400" wrongAnswers="5"></stick-figure>
+    <pre class="status" ng-bind="status">Loading Endpoints...</pre>
+    <div id="game" class="hidden">
+      <stick-figure size="400" wrongAnswers="{{ wrongAnswers }}"></stick-figure>
       <section id="code-letters">
-        <code-letter letter="H"></code-letter>
-        <code-letter letter="_"></code-letter>
-        <code-letter letter="N"></code-letter>
-        <code-letter letter="_"></code-letter>
-        <code-letter letter="M"></code-letter>
-        <code-letter letter="_"></code-letter>
-        <code-letter letter="N"></code-letter>
+        <span ng-repeat="letter in game.display_word track by $index" >
+          <code-letter letter="{{ letter }}"></code-letter>
+        </span>
       </section>
       <section id="guesses">
-        Guesses: HNMXYZBC
+        Guesses: {{ game.guesses }}
       </section>
     </div>
-    <paper-fab icon="add" title="Add Guess" onclick="toggleDropdown()"></paper-fab>
+    <paper-fab icon="add" title="Add Guess" ng-click="toggleGuessDialog()"></paper-fab>
     <paper-action-dialog backdrop autoCloseDisabled layered="false" heading="Submit Guess" >
       <section>
         <paper-input-decorator label="Make Your Guess"
                        error="You can only guess one character at a time!" floatingLabel isInvalid="false">
-          <input id="i2" is="core-input" maxlength="2">
+          <input id="i2" is="core-input" maxlength="2" ng-model="guess">
           <paper-char-counter class="counter" showCounter="false" target="i2"></paper-char-counter>
         </paper-input-decorator>
       </section>
-      <paper-button affirmative>Cancel</paper-button><paper-button affirmative autofocus>Send</paper-button>
+      <paper-button affirmative>Cancel</paper-button><paper-button affirmative autofocus ng-click="makeGuess(guess)">Send</paper-button>
     </paper-action-dialog>
-    <script>
-    var toggleDropdown = function() {
-    	document.querySelector('paper-action-dialog').toggle();
-    }
-    </script>
   </body>
 </html>
