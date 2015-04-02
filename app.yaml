@@ -9,8 +9,12 @@ handlers:
   static_files: favicon.ico
   upload: favicon\.ico
 
-- url: /rest/.*
-  script: main.APP
+- url: /hangman\.png
+  static_files: hangman.png
+  upload: hangman\.png
+
+- url: /_ah/spi/.*
+  script: hangman_service.api
 
 - url: (.*)/
   static_files: app\1/index.html

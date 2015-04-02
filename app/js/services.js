@@ -1,19 +1,5 @@
 var App = angular.module('AppServices', []);
 
-App.factory('myHttpInterceptor', function($rootScope, $q) {
-  return {
-    'requestError': function(config) {
-      $rootScope.status = 'HTTP REQUEST ERROR ' + config;
-      return config || $q.when(config);
-    },
-    'responseError': function(rejection) {
-      $rootScope.status = 'HTTP RESPONSE ERROR ' + rejection.status + '\n' +
-                          rejection.data;
-      return $q.reject(rejection);
-    },
-  };
-});
-
 App.factory('guestService', function($rootScope, $http, $q, $log) {
   $rootScope.status = 'Retrieving data...';
   var deferred = $q.defer();
