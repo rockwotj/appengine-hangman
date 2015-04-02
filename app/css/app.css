@@ -1,5 +1,68 @@
 .status {
-  color: blue;
-  padding: 1em;
-  height: 1em;
+	color: blue;
+	height: 1em;
+	text-align: center;
+}
+
+body {
+	font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+	margin: 0;
+}
+
+core-toolbar {
+	color: #f1f1f1;
+	fill: #f1f1f1;
+}
+
+core-menu {
+	color: black;
+}
+
+paper-fab {
+    position: absolute;
+    bottom: 26px;
+    right: 26px;
+}
+
+.menu-text {
+	top: -13px;
+	font-size: 16px;
+	position: relative;
+	cursor: pointer;
+	cursor: hand;
+}
+
+paper-action-dialog {
+	width: 400px;
+}
+
+paper-input {
+	width: 300px;
+}
+
+#game {
+	margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+	text-align: center;
+}
+
+stick-figure {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	width: 400px;
+}
+
+#code-letters {
+	display: block;
+}
+
+code-letter {
+	margin-right: 8px;
+	margin-left: 8px;
+}
+
+#guesses {
+	font-size: 24px;
 }

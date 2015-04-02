@@ -1,0 +1,119 @@
+<polymer-element name="stick-figure" attributes="size wrongAnswers">
+  <template>
+  <style>
+  div {
+    background-color: black;
+    height: {{size / 25 }}px;
+    width: {{size * .28 }}px;
+    margin: 0px;
+    position: absolute;
+  }
+  .left.leg {
+    right: {{ size * .4 }}px;
+  }
+  .right.leg {
+    left: {{ size * .4 }}px;
+  }
+  .left {
+    right: {{ size / 2 }}px;
+    -ms-transform: rotate(-23deg);
+    -webkit-transform: rotate(-23deg);
+    transform: rotate(-23deg);
+  }
+  .right {
+    left: {{ size / 2}}px;
+    -ms-transform: rotate(23deg);
+    -webkit-transform: rotate(23deg);
+    transform: rotate(23deg);
+  }
+  .arm {
+    top: {{size * .35}}px;
+  }
+  .leg {
+    top: {{ size * .52 }}px;
+    width: {{ size / 25 }}px;
+    height: {{ size * .4 }}px;
+  }
+  .torso {
+    width: {{ size / 25 }}px;
+    height: {{ size * .42}}px;
+    left: {{ (size / 2) - (size / 50) }}px;
+    top: {{ size * .15 }}px;
+  }
+  .head {
+    border-radius: 50%;
+    width: {{ size / 5}}px;
+    height: {{ size / 5}}px;
+    left: {{ size * .4 }}px;
+    top: {{ size / 16 }}px
+  }
+  #container {
+    position: relative;
+    width: {{ size }}px;
+    height: {{ size }}px;
+    background-color: initial;
+  }
+  .gallows1 {
+    height: {{size / 20 }}px;
+    width: {{size * .52 }}px;
+  }
+  .gallows2 {
+    width: {{size / 20 }}px;
+    height: {{ size }}px;
+  }
+  .gallows3 {
+    width: {{size / 20 }}px;
+    height: {{ size / 20 }}px;
+    top: {{size / 20 }}px;
+    left: {{ (size * .52) - (size / 20) }}px;
+  }
+  .gallows4 {
+    width: {{size / 20 }}px;
+    height: {{ size / 3 }}px;
+    top: -{{size / 35 }}px;
+    left: {{ size / 8 }}px;
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .visible-false {
+    display: none;
+  }
+  </style>
+  <div id="container">
+    <div class="gallows1"></div>
+    <div class="gallows2"></div>
+    <div class="gallows3"></div>
+    <div class="gallows4"></div>
+    <div class="head visible-{{ wrongAnswers > 0 }}"></div>
+    <div class="torso visible-{{ wrongAnswers > 1 }}"></div>
+    <div class="left arm visible-{{ wrongAnswers > 2 }}"></div>
+    <div class="right arm visible-{{ wrongAnswers > 3 }}"></div>
+    <div class="left leg visible-{{ wrongAnswers > 4 }}"></div>
+    <div class="right leg visible-{{ wrongAnswers > 5 }}"></div>
+  </div>
+</template>
+<script>
+Polymer({
+  wrongAnswers: 0,
+  size: 100
+});
+</script>
+</polymer-element>
+
+<polymer-element name="code-letter" attributes="letter size">
+<template>
+  <style>
+    span {
+      font-size: {{ size }}px;
+      width: {{ size }}px;
+    }
+  </style>
+  <span>{{ letter }}</span>
+</template>
+<script>
+  Polymer({
+    size: 64
+  });
+</script>
+</polymer-element>
