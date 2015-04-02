@@ -67,3 +67,17 @@ code-letter {
 .hidden {
 	display: none;
 }
+
+.launch {
+	text-align: center;
+	vertical-align: center;
+}
+
+.launch-button {
+	margin-top: 100px;
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	vertical-align: center;
+	background: #4285f4;
+}

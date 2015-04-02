@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="/css/app.css">
+    <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.js"></script>
     <script src="/js/base.js"></script>
     <script src="/js/app.js"></script>
@@ -57,6 +58,9 @@
       <section id="guesses">
         Guesses: {{ game.guesses }}
       </section>
+    </div>
+    <div class="launch">
+    	<paper-button class="launch-button" ng-click="launch()" raised>Launch</paper-button>
     </div>
     <paper-fab icon="add" title="Add Guess" ng-click="toggleGuessDialog()"></paper-fab>
     <paper-action-dialog id="guess-dialog" backdrop autoCloseDisabled layered="false" heading="Submit Guess" >

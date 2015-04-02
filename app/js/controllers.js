@@ -11,10 +11,14 @@ app.controller('MainCtrl', function($scope, $rootScope, cloudEndpoints, codeType
   	$rootScope.status = status;
   }
   // Force sign in on start up
-  cloudEndpoints.signin(function() {
-    setStatus('User Authenticated!');
-    $scope.newGame();
-  });
+  $scope.launch = function() {
+	  cloudEndpoints.signin(function() {
+		  setStatus('User Authenticated!');
+		  angular.element(document.querySelector('#game')).removeClass('hidden');
+		  angular.element(document.querySelector('.launch')).addClass('hidden');
+		  $scope.newGame();
+	  });
+  };
   
   var bindResult = function(game) {
     $scope.wrongAnswers = 0;
