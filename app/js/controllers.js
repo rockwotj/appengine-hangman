@@ -1,6 +1,6 @@
 var app = angular.module('AppControllers', []);
 
-app.controller('MainCtrl', function($scope, $rootScope, cloudEndpoints, codeTypes) {
+app.controller('MainCtrl', function($scope, $rootScope, oAuth, codeTypes) {
   $scope.game = {'display_word': [], 'guesses': ""};
   $scope.guess = "";
   $scope.codeType = 'Text';
@@ -10,9 +10,9 @@ app.controller('MainCtrl', function($scope, $rootScope, cloudEndpoints, codeType
   var setStatus = function(status) {
   	$rootScope.status = status;
   }
-  // Force sign in on start up
+
   $scope.launch = function() {
-	  cloudEndpoints.signin(function() {
+	  oAuth.signin(function() {
 		  setStatus('User Authenticated!');
 		  angular.element(document.querySelector('#game')).removeClass('hidden');
 		  angular.element(document.querySelector('.launch')).addClass('hidden');
@@ -30,6 +30,9 @@ app.controller('MainCtrl', function($scope, $rootScope, cloudEndpoints, codeType
     }
     game.display_word = game.display_word.split("");
     $scope.game = game;
+    // This updates Angular Bindings.
+    // Assumed that bindResult is called from a non-angular 
+    // generated event
     $scope.$apply();
   };
   
@@ -39,7 +42,7 @@ app.controller('MainCtrl', function($scope, $rootScope, cloudEndpoints, codeType
   
   $scope.newGame = function() {
     setStatus('Getting new game from server...');
-    cloudEndpoints.doCall().then(function(api) {
+    oAuth.doCall().then(function(api) {
       api.client.hangman.new().execute(function(resp) {
     	setStatus('New game created!');
     	console.log(resp.result);
@@ -61,7 +64,7 @@ app.controller('MainCtrl', function($scope, $rootScope, cloudEndpoints, codeType
 		return;
 	}
 	setStatus('Sending Guess of ' + letter + ' to Server...');
-    cloudEndpoints.doCall().then(function(api) {
+	oAuth.doCall().then(function(api) {
       setStatus('Made the guess!');
       var game = $scope.game;
       game.display_word = game.display_word.join("");
