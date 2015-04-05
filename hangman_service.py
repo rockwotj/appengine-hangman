@@ -19,7 +19,6 @@ class HangmanApi(remote.Service):
         new_game.display_word = "_" * len(new_game.word)
         new_game.guesses = ""
         new_game.put()
-        print new_game.word
         return new_game
 
 

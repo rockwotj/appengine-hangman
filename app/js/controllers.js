@@ -12,11 +12,19 @@ app.controller('MainCtrl', function($scope, $rootScope, oAuth, codeTypes) {
   }
 
   $scope.launch = function() {
-	  oAuth.signin(function() {
-		  setStatus('User Authenticated!');
-		  angular.element(document.querySelector('#game')).removeClass('hidden');
-		  angular.element(document.querySelector('.launch')).addClass('hidden');
-		  $scope.newGame();
+	  oAuth.signin(true, function(authResult) {
+		  var afterOAuth = function() {
+			  setStatus('User Authenticated!');
+			  angular.element(document.querySelector('#game')).removeClass('hidden');
+			  angular.element(document.querySelector('.launch')).addClass('hidden');
+			  $scope.newGame();
+		  };
+		  if(authResult.error) {
+			  //Make call with popup
+			  oAuth.signin(false, afterOAuth);
+		  } else {
+			  afterOAuth();
+		  }
 	  });
   };
   

@@ -28,11 +28,11 @@ app.service('oAuth', function ($q) {
 	}
   };
 
-  this.signin = function(callback) {
+  this.signin = function(immediate, callback) {
     gapi.auth.authorize({
       client_id: CLIENT_ID,
       scope: SCOPES,
-      immediate: false
+      immediate: immediate
     }, callback);
   };
 });
