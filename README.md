@@ -1,6 +1,6 @@
 ## Top Secret Hangman
 
-An AngularJS Hangman Game that teaches you different 'codes' at the same time. i.e. Morse Code, Braille, ASCII.
+An [AngularJS Hangman Game](https://rockwotj-top-secret-hangman.appspot.com/) that teaches you different 'codes' at the same time. i.e. Morse Code, Braille, ASCII.
 
 ## But why?
 
@@ -19,7 +19,7 @@ This may or may not eventually become a lab for student looking to learn similar
 
 This webapp started out as [App Engine AngularJS "Hello World" Python](https://github.com/GoogleCloudPlatform/appengine-angular-hello-world-python) starting template provided by Google Cloud Platform.
 
-Author: Fred Sauer <fredsa@google.com>
+Author: Fred Sauer, <fredsa@google.com>
 
 ## Contributing changes
 
