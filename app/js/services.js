@@ -1,5 +1,4 @@
 var app = angular.module('AppServices', []);
-var apiCallInProgress = false;
 
 app.factory('codeTypes', function() {
   return ['Braille', 'Sign Language', 'Text'];
@@ -7,7 +6,6 @@ app.factory('codeTypes', function() {
 
 app.service('oAuth', function ($q) {
   this.doCall = function() {
-	if(!apiCallInProgress) {
 	  var p = $q.defer();
 	  apiCallInProgress = true;
 	  gapi.auth.authorize({
@@ -21,11 +19,9 @@ app.service('oAuth', function ($q) {
 	      } else {
 	        p.reject(gapi);
 	      }
-	      apiCallInProgress = false;
 	    });
 	  });
 	  return p.promise;
-	}
   };
 
   this.signin = function(immediate, callback) {

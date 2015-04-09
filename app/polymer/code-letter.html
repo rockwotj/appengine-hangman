@@ -11,19 +11,26 @@
     .shown-false {
       display: none;
     }
-    .picked-true {
-     visibility: hidden;
-    }
   </style>
-     <span class="shown-{{ 'Braille' === type }}"><img src="/imgs/braille/{{ letter }}.png" alt="{{ letter }}"></span>
-     <span class="shown-{{ 'Sign Language' === type }}"><img src="/imgs/sign-language/{{ letter }}.png" alt="{{ letter }}"></span>
+     <span class="shown-{{ 'Braille' === type }}"><img src="/imgs/braille/{{ _letter }}.png" alt="{{ _letter }}"></span>
+     <span class="shown-{{ 'Sign Language' === type }}"><img src="/imgs/sign-language/{{ _letter }}.png" alt="{{ _letter }}"></span>
      <span class="shown-{{ 'Text' === type }}">{{ letter }}</span>
 </template>
 <script>
   Polymer({
     size: 56,
     letter: '_',
-    type: 'text'
+    _letter: '_',
+    type: 'text',
+    attributeChanged: function(attrName, oldVal, newVal) {
+      if(attrName === "letter") {
+        if(newVal === ' ') {
+          _letter = '_';
+        } else {
+          _letter = newVal;
+        }
+      }
+    }
   });
 </script>
 </polymer-element>
