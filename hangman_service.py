@@ -32,7 +32,7 @@ class HangmanApi(remote.Service):
         hangman_game.guesses = hangman_game.guesses.upper()
         wrong_answers = 0
         for letter in old_game.guesses:
-            if letter in old_game.word:
+            if letter not in old_game.word:
                 wrong_answers += 1
         if wrong_answers >= 6:
             raise endpoints.BadRequestException('You already lost this game!')
