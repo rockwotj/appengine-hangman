@@ -4,7 +4,7 @@ An [AngularJS Hangman Game](https://rockwotj-top-secret-hangman.appspot.com/) th
 
 ## But why?
 
-This was developed in order to be a learning experience for Tyler Rockwood's 2015 Spring Independent Study with Dr. Dave Fisher. It uses the following technology stack:
+This was developed in order to be a learning experience for Tyler Rockwood's 2015 Spring Independent Study with Dr. David Fisher. It uses the following technology stack:
 
 1. Google App Engine
 1. Javascript Endpoints
